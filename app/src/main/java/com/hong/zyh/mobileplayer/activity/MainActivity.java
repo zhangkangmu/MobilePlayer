@@ -20,6 +20,7 @@ import com.hong.zyh.mobileplayer.pager.AudioPager;
 import com.hong.zyh.mobileplayer.pager.NetAudioPager;
 import com.hong.zyh.mobileplayer.pager.NetVideoPager;
 import com.hong.zyh.mobileplayer.pager.VideoPager;
+import com.hong.zyh.mobileplayer.utils.LogUtil;
 
 import java.util.ArrayList;
 
@@ -64,7 +65,8 @@ public class MainActivity extends FragmentActivity {
        //设置RadioGroup的监听
         rg_bottom_tag.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
         //默认选中本地视频
-        rg_bottom_tag.check(R.id.rb_video);
+        LogUtil.e("默认rb_video");
+       rg_bottom_tag.check(R.id.rb_video);
 
     }
 
@@ -138,12 +140,13 @@ public class MainActivity extends FragmentActivity {
      * 根据位置得到对应的pager页面
      */
     private BasePager getBasePager() {
+        LogUtil.e("position："+position);
         BasePager basePager = basePagers.get(position);
-        if (basePager != null) {
+        if (basePager != null && !basePager.isInitData) {
             //绑定数据
             basePager.initData();
-            return basePager;
+            basePager.isInitData =true;
         }
-        return null;
+        return basePager;
     }
 }

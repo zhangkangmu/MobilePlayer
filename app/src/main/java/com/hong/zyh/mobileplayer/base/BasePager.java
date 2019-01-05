@@ -15,6 +15,7 @@ public abstract class BasePager {
     public Context context;
     //私有的view，因为只需要给自己的页面展示
     public View rootView;
+    public boolean isInitData;
 
     public BasePager(Context context) {
         this.context = context;
