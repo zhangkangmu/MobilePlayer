@@ -5,10 +5,12 @@
     android:background="#ffffff"
     android:orientation="vertical">
     <FrameLayout
+        android:id="@+id/fl_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 <RadioGroup
+    android:id="@+id/rg_bottom_tag"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#f1f1f1"
@@ -24,20 +26,20 @@
 
     <!--本地音乐按钮-->
     <RadioButton
-        android:id="@+id/rb_net_video"
+        android:id="@+id/rb_audio"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_video_drawable_selector"
         android:text="本地音乐" />
 
     <!--网络视频按钮-->
     <RadioButton
-        android:id="@+id/rb_net_audio"
+        android:id="@+id/rb_net_video"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_audio_drawable_selector"
         android:text="网络视频" />
     <!--网络音乐按钮-->
     <RadioButton
-        android:id="@+id/rb_net_music"
+        android:id="@+id/rb_net_audio"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_music_drawable_selector"
         android:text="网络音乐" />
