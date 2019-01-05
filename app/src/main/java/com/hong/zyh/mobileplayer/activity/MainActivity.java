@@ -1,5 +1,6 @@
 package com.hong.zyh.mobileplayer.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -97,7 +98,9 @@ public class MainActivity extends FragmentActivity {
         //2、开启事务
         FragmentTransaction ft = manager.beginTransaction();
         //3、替换
-        ft.replace(R.id.fl_main_content,new MyFragment(getBasePager()));
+        MyFragment myFragment=new MyFragment();
+        myFragment.newInstance(getBasePager());
+        ft.replace(R.id.fl_main_content,myFragment);
         //4、提交事务
         ft.commit();
     }
@@ -109,12 +112,18 @@ public class MainActivity extends FragmentActivity {
     public static class MyFragment extends Fragment {
 
         private BasePager currPager;
-
-        public MyFragment(BasePager pager) {
+//        public MyFragment() {
+//        }
+//        //如果重写了Fragment的构造方法会导致报错，因为如屏幕翻转时，fragment被重新创建，就可能会造成数据丢失
+        //加的@SuppressLint({"NewApi", "ValidFragment"})这个语句就可以不检察，但是这是google不推荐的做法
+//        @SuppressLint({"NewApi", "ValidFragment"})
+//        public MyFragment(BasePager pager) {
+//            this.currPager=pager;
+//        }
+        public BasePager newInstance(BasePager pager) {
             this.currPager=pager;
+            return pager;
         }
-
-        @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
         }
