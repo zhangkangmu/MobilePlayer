@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
+    <!--标题栏-->
+    <include layout="@layout/titlebar"/>
     <FrameLayout
         android:id="@+id/fl_main_content"
         android:layout_width="match_parent"

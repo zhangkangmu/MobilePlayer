@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="#ff3097fb"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:src="@drawable/ic_topbanner_logo" />
+    <!--注意要加clickable属性才能让他可以点-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/tv_search_bg_selector"
+        android:clickable="true"
+        android:drawableLeft="@drawable/tv_search_drawable_selector"
+        android:drawablePadding="5dp"
+        android:text="全网搜索"
+        android:textColor="@drawable/tv_search_textcolor_selector" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:id="@+id/tv_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_topbanner_game" />
+
+        <!--游戏右上角的点-->
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_alignRight="@+id/tv_game"
+            android:src="@drawable/dot_game" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_topbanner_record" />
+</LinearLayout>

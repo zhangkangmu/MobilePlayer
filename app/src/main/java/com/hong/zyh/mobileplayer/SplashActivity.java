@@ -25,7 +25,7 @@ public class SplashActivity extends Activity {
                 Log.d(TAG, "MianActivity开启");
                 finish();
             }
-        }, 2000);
+        }, 500);
     }
 
     //开启主页面的方法
