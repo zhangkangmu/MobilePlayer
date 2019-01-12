@@ -20,6 +20,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleInstance"></activity>
+        <activity android:name=".activity.SystemVideoPlayer"></activity>
     </application>
 
 </manifest>
