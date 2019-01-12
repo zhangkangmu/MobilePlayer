@@ -3,26 +3,21 @@ package com.hong.zyh.mobileplayer.pager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.provider.MediaStore;
-import android.text.format.Formatter;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hong.zyh.mobileplayer.R;
+import com.hong.zyh.mobileplayer.adapter.VideoPagerAdapter;
 import com.hong.zyh.mobileplayer.base.BasePager;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
 import com.hong.zyh.mobileplayer.utils.LogUtil;
-import com.hong.zyh.mobileplayer.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -35,7 +30,8 @@ public class VideoPager extends BasePager {
     private ListView listview_video;
     private TextView tv_nomedia;
     private ProgressBar pg_loading;
-    private Utils utils;
+    //单独维护出一个adapter方便以后修改
+   private VideoPagerAdapter videoPagerAdapter;
 
     //存放每一个MedaiItem的集合，方便listview获取数据
     ArrayList<MediaItem> mediaItems;
@@ -46,7 +42,8 @@ public class VideoPager extends BasePager {
             super.handleMessage(msg);
             if (mediaItems != null && mediaItems.size() > 0) {
                 //有数据就设置适配器
-                listview_video.setAdapter(new VideoPagerAdapter());
+                videoPagerAdapter= new VideoPagerAdapter(context,mediaItems);
+                listview_video.setAdapter(videoPagerAdapter);
                 //把文本隐藏
                 tv_nomedia.setVisibility(View.GONE);
             } else {
@@ -60,7 +57,6 @@ public class VideoPager extends BasePager {
 
     public VideoPager(Context context) {
         super(context);
-        utils = new Utils();
     }
 
     @Override
@@ -89,9 +85,12 @@ public class VideoPager extends BasePager {
 
         mediaItems = new ArrayList<MediaItem>();
         new Thread() {
+
             @Override
             public void run() {
                 super.run();
+                //为了显示出加载的画面睡眠一会
+                SystemClock.sleep(500);
                 ContentResolver resolver = context.getContentResolver();
                 Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
                 String[] objs = {
@@ -132,51 +131,5 @@ public class VideoPager extends BasePager {
                 handler.sendEmptyMessage(10);
             }
         }.start();
-    }
-
-    class VideoPagerAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return mediaItems.size();
-        }
-
-        @Override
-        public MediaItem getItem(int position) {
-            return mediaItems.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHoder viewHoder;
-            if (convertView == null) {
-                viewHoder = new ViewHoder();
-                convertView = View.inflate(context, R.layout.item_video_pager, null);
-                viewHoder.iv_item_video = convertView.findViewById(R.id.iv_item_video);
-                viewHoder.tv_video_name = convertView.findViewById(R.id.tv_video_name);
-                viewHoder.tv_video_time = convertView.findViewById(R.id.tv_video_time);
-                viewHoder.tv_video_size = convertView.findViewById(R.id.tv_video_size);
-                convertView.setTag(viewHoder);
-            } else {
-                viewHoder = (ViewHoder) convertView.getTag();
-            }
-            MediaItem mediaItem = mediaItems.get(position);
-            viewHoder.tv_video_name.setText(mediaItem.getName());
-            viewHoder.tv_video_time.setText(utils.stringForTime((int) (mediaItem.getDuration())));
-            viewHoder.tv_video_size.setText(Formatter.formatFileSize(context, mediaItem.getDuration()));
-            return convertView;
-        }
-    }
-
-    static class ViewHoder {
-        ImageView iv_item_video;
-        TextView tv_video_name;
-        TextView tv_video_time;
-        TextView tv_video_size;
     }
 }
