@@ -82,18 +82,28 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
      */
     @Override
     public void onClick(View v) {
-        if ( v == btVoice ) {
+        if (v == btVoice) {
             // Handle clicks for btVoice
-        } else if ( v == bthExit ) {
+        } else if (v == bthExit) {
             // Handle clicks for bthExit
-        } else if ( v == btnVideoPre ) {
+        } else if (v == btnVideoPre) {
             // Handle clicks for btnVideoPre
             //播放的id
-        } else if ( v == btnVideoStartPause ) {
-            // Handle clicks for btnVideoStartPause
-        } else if ( v == btnVideoNext ) {
+        } else if (v == btnVideoStartPause) {
+            if (system_vedio_player.isPlaying()) {
+                //正在播放的视频被点击后暂停
+                system_vedio_player.pause();
+                //按钮切换成准备开始播放的样式
+                btnVideoStartPause.setBackgroundResource(R.drawable.btn_video_play_selector);
+            }else{
+                //视频开始播放
+                system_vedio_player.start();
+                //按钮切换成准备暂停播放的样式
+                btnVideoStartPause.setBackgroundResource(R.drawable.btn_video_pause_selector);
+            }
+        } else if (v == btnVideoNext) {
             // Handle clicks for btnVideoNext
-        } else if ( v == btnVideoSwitchScreen ) {
+        } else if (v == btnVideoSwitchScreen) {
             // Handle clicks for btnVideoSwitchScreen
         }
     }
