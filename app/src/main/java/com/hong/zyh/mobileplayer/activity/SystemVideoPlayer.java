@@ -149,14 +149,8 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
         videoName = getIntent().getStringExtra("videoName");
 
-        //准备好了的监听
-        system_vedio_player.setOnPreparedListener(new MyOnPreparedListener());
-
-        //播放出错的监听
-        system_vedio_player.setOnErrorListener(new MyOnErrorListener());
-
-        //播放完成的监听
-        system_vedio_player.setOnCompletionListener(new MyOnCompletionListener());
+        //设置system_vedio_player系统播放器的监听
+        setListener();
 
         //获取播放地址
         uri = getIntent().getData();
@@ -166,6 +160,60 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         //设置控制面板
         //system_vedio_player.setMediaController(new MediaController(this));
         //自己定义一個面板
+    }
+
+    private void setListener() {
+        //准备好了的监听
+        system_vedio_player.setOnPreparedListener(new MyOnPreparedListener());
+
+        //播放出错的监听
+        system_vedio_player.setOnErrorListener(new MyOnErrorListener());
+
+        //播放完成的监听
+        system_vedio_player.setOnCompletionListener(new MyOnCompletionListener());
+
+        //设置seekbar状态变化的监听
+        seekbarVideo.setOnSeekBarChangeListener(new VideoOnSeekBarChangeListener());
+    }
+
+    /**
+     * 设置seekbar状态变化的实现类
+     */
+    class VideoOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+
+        /**
+         * 当进度发生变化的时候触发
+         *
+         * @param seekBar
+         * @param progress
+         * @param fromUser 如果是用户点击的则为ture,系统自己改变的则为false
+         */
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if (fromUser) {
+                system_vedio_player.seekTo(progress);
+            }
+        }
+
+        /**
+         * 当手指点击的时候触发
+         *
+         * @param seekBar
+         */
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        /**
+         * 当手指松开的时候触发
+         *
+         * @param seekBar
+         */
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
     }
 
     /**
