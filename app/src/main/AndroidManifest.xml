@@ -24,6 +24,7 @@
         <!--增加的configChanges為了防止發生哪些情況會銷毀activity-->
         <activity
             android:name=".activity.SystemVideoPlayer"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:configChanges="keyboardHidden|screenSize|orientation"></activity>
     </application>
 
