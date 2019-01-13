@@ -22,9 +22,11 @@
             android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|screenSize|orientation"></activity>
         <!--增加的configChanges為了防止發生哪些情況會銷毀activity-->
+        <!--screenOrientation默认横屏-->
         <activity
             android:name=".activity.SystemVideoPlayer"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|screenSize|orientation"></activity>
     </application>
 

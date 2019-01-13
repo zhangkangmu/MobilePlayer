@@ -120,6 +120,8 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+
+
             super.handleMessage(msg);
             switch (msg.what) {
                 case PROGRESS:
@@ -238,7 +240,6 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
     /**
      * 监听播放出错的class
-     * 如果出错会默认弹出一个对话框，但是这里增加多一个toash
      * 如果出错会默认弹出一个对话框，但是这里增加多一个toash
      */
     class MyOnErrorListener implements MediaPlayer.OnErrorListener {
