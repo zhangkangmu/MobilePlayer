@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.hong.zyh.mobileplayer.R;
+import com.hong.zyh.mobileplayer.utils.Utils;
 
 /**
  * Created by shuaihong on 2019/1/12.
@@ -23,6 +26,11 @@ import com.hong.zyh.mobileplayer.R;
  */
 
 public class SystemVideoPlayer extends Activity implements View.OnClickListener{
+
+    /**
+     * 视频进度
+     */
+    private static final int PROGRESS = 1;
     private Uri uri;
     //videopager傳過來的數據
     private String videoName;
@@ -44,6 +52,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     private Button btnVideoNext;
     private Button btnVideoSwitchScreen;
 
+    Utils utils;
     /**
      * Find the Views in the layout
      * Auto-created on 2019-01-13 14:14:39 by Android Layout Finder
@@ -108,10 +117,32 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         }
     }
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case PROGRESS:
+                    //1、得到视频当前的进度
+                    int currentPosition = system_vedio_player.getCurrentPosition();
+                    //2、设置文本显示当前播放到的时间
+                    tvCurrentTime.setText(utils.stringForTime(currentPosition));
+                    //3、设置seekbar的进度
+                    seekbarVideo.setProgress(currentPosition);
+                    //4、每秒更新一次
+                    handler.removeMessages(PROGRESS);
+                    handler.sendEmptyMessageDelayed(PROGRESS,500);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        utils=new Utils();
+
         setContentView(R.layout.activity_system_video_player);
         //找出activity_system_video_player.xml的id
         findViews();
@@ -145,11 +176,21 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         public void onPrepared(MediaPlayer mp) {
             //让VideoView开始播放
             system_vedio_player.start();
+            //获取当前视频总时长,这个第一种方式，还有另外一种方式是： mp.getDuration();
+            int vedio_playerDuration = system_vedio_player.getDuration();
+            //1、设置seekbar的总时长，关联上视频
+            seekbarVideo.setMax(vedio_playerDuration);
+            //2、设置视频总时长显示
+            tvDuration.setText( utils.stringForTime(vedio_playerDuration));
+            //3、发送消息告诉handler更新进度
+            handler.sendEmptyMessage(PROGRESS);
         }
     }
 
+
     /**
      * 监听播放出错的class
+     * 如果出错会默认弹出一个对话框，但是这里增加多一个toash
      * 如果出错会默认弹出一个对话框，但是这里增加多一个toash
      */
     class MyOnErrorListener implements MediaPlayer.OnErrorListener {
