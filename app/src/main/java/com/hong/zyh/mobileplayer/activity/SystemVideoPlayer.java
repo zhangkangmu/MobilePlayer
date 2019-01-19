@@ -24,6 +24,9 @@ import android.widget.VideoView;
 import com.hong.zyh.mobileplayer.R;
 import com.hong.zyh.mobileplayer.utils.Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by shuaihong on 2019/1/12.
  * 自己创建的系统播放器
@@ -139,13 +142,26 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
                     tvCurrentTime.setText(utils.stringForTime(currentPosition));
                     //3、设置seekbar的进度
                     seekbarVideo.setProgress(currentPosition);
+
+                    //更新时间
+                    tvSystemTime.setText(getSystemTime());
+
                     //4、每秒更新一次
                     handler.removeMessages(PROGRESS);
-                    handler.sendEmptyMessageDelayed(PROGRESS,500);
+                    handler.sendEmptyMessageDelayed(PROGRESS,1000);
                     break;
             }
         }
     };
+
+    /**
+     * 得到系统时间
+     * @return
+     */
+    private String getSystemTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        return simpleDateFormat.format(new Date());
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
