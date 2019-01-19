@@ -1,6 +1,10 @@
 package com.hong.zyh.mobileplayer.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,7 +56,11 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     private Button btnVideoNext;
     private Button btnVideoSwitchScreen;
 
-    Utils utils;
+    private Utils utils;
+    /**
+     * 监听电量广播接收者
+     */
+    private MyBroadcastReceiver myBroadcastReceiver;
     /**
      * Find the Views in the layout
      * Auto-created on 2019-01-13 14:14:39 by Android Layout Finder
@@ -94,7 +102,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         if (v == btVoice) {
             // Handle clicks for btVoice
         } else if (v == bthExit) {
-            // Handle clicks for bthExit
+            finish();
         } else if (v == btnVideoPre) {
             // Handle clicks for btnVideoPre
             //播放的id
@@ -143,7 +151,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        utils=new Utils();
+        initData();
 
         setContentView(R.layout.activity_system_video_player);
         //找出activity_system_video_player.xml的id
@@ -164,6 +172,46 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         //自己定义一個面板
     }
 
+    private void initData() {
+        utils=new Utils();
+        myBroadcastReceiver=new MyBroadcastReceiver();
+        //注册电量广播
+        IntentFilter intentFilter = new IntentFilter();
+        //当电量发生变化的时候发出的广播
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(myBroadcastReceiver,intentFilter);
+    }
+
+    class MyBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //电量发出的电量值内容是level
+            int level = intent.getIntExtra("level",0);
+            setBattery(level);
+        }
+    }
+
+    private void setBattery(int battery) {
+        if (battery <= 0) {
+            //更换图片使用的方法setImageResource
+            ivBattery.setImageResource(R.drawable.ic_battery_0);
+        } else if (battery < 10) {
+            ivBattery.setImageResource(R.drawable.ic_battery_10);
+        } else if (battery < 20) {
+            ivBattery.setImageResource(R.drawable.ic_battery_20);
+        } else if (battery < 40) {
+            ivBattery.setImageResource(R.drawable.ic_battery_40);
+        } else if (battery < 60) {
+            ivBattery.setImageResource(R.drawable.ic_battery_60);
+        } else if (battery < 80) {
+            ivBattery.setImageResource(R.drawable.ic_battery_80);
+        } else if (battery <=100) {
+            ivBattery.setImageResource(R.drawable.ic_battery_100);
+        } else {
+            ivBattery.setImageResource(R.drawable.ic_battery_100);
+        }
+    }
     private void setListener() {
         //准备好了的监听
         system_vedio_player.setOnPreparedListener(new MyOnPreparedListener());
@@ -260,4 +308,14 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        //释放资源的时候要先释放子类的再释放父类的
+        if(myBroadcastReceiver !=null){
+            unregisterReceiver(myBroadcastReceiver);
+            myBroadcastReceiver=null;
+        }
+
+        super.onDestroy();
+    }
 }
