@@ -1,11 +1,13 @@
 package com.hong.zyh.mobileplayer.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by shuaihong on 2019/1/10.
  * 一条视频的对象
  */
 
-public class MediaItem {
+public class MediaItem implements Serializable {
     private String name;
     private long  duration;
     private long  size;

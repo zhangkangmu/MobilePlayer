@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -59,12 +60,21 @@ public class VideoPager extends BasePager {
                         //context.startActivity(intent);
 
                         //2、调用自己写的播放器--显示意图
-                        Intent intent = new Intent(context,SystemVideoPlayer.class);
+                        //Intent intent = new Intent(context,SystemVideoPlayer.class);
                         //intent会传入一个data路径，而其他的activity可以通过一个getData（）获取
-                        intent.setDataAndType(Uri.parse(mediaItems.get(position).getData()),"vieo/*");
+                        //intent.setDataAndType(Uri.parse(mediaItems.get(position).getData()),"vieo/*");
                         //把视频的名字也传过去
-                        intent.putExtra("videoName",mediaItems.get(position).getName());
+                        //intent.putExtra("videoName",mediaItems.get(position).getName());
+                        //context.startActivity(intent);
+
+                        //3、传递列表数据--对象--序列化
+                        Intent intent = new Intent(context, SystemVideoPlayer.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("videolist", mediaItems);
+                        intent.putExtras(bundle);
+                        intent.putExtra("position",position);
                         context.startActivity(intent);
+
                     }
                 });
                 //把文本隐藏

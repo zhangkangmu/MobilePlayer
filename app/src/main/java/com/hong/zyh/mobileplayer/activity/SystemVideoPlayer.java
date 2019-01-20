@@ -22,9 +22,11 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.hong.zyh.mobileplayer.R;
+import com.hong.zyh.mobileplayer.bean.MediaItem;
 import com.hong.zyh.mobileplayer.utils.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -64,6 +66,15 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
      * 监听电量广播接收者
      */
     private MyBroadcastReceiver myBroadcastReceiver;
+    /**
+     * VideoPlayer传递过来的列表数据
+     */
+    private ArrayList<MediaItem> mediaItems;
+    /**
+     * VideoPlayer传递过来的点击位置
+     */
+    private int position;
+
     /**
      * Find the Views in the layout
      * Auto-created on 2019-01-13 14:14:39 by Android Layout Finder
@@ -106,9 +117,10 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
             // Handle clicks for btVoice
         } else if (v == bthExit) {
             finish();
+            //播放上一个的id
         } else if (v == btnVideoPre) {
-            // Handle clicks for btnVideoPre
-            //播放的id
+            playPreVideo();
+            //播放暂停的id
         } else if (v == btnVideoStartPause) {
             if (system_vedio_player.isPlaying()) {
                 //正在播放的视频被点击后暂停
@@ -121,10 +133,110 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
                 //按钮切换成准备暂停播放的样式
                 btnVideoStartPause.setBackgroundResource(R.drawable.btn_video_pause_selector);
             }
+            //播放下一个的id
         } else if (v == btnVideoNext) {
-            // Handle clicks for btnVideoNext
+            playNextVideo();
         } else if (v == btnVideoSwitchScreen) {
             // Handle clicks for btnVideoSwitchScreen
+        }
+    }
+
+    /**
+     * btnVideoNext,播放下一个视频按钮的方法
+     */
+    private void playNextVideo() {
+        if (mediaItems.size() > 0 && mediaItems != null) {
+            position++;
+            if (position < mediaItems.size()) {
+                MediaItem mediaItem = mediaItems.get(position);
+                tvName.setText(mediaItem.getName());
+                system_vedio_player.setVideoPath(mediaItem.getData());
+                //设置按钮的点击状态
+                setButtonState();
+            }
+        } else if (uri != null) {
+            //设置按钮状态-上一个和下一个按钮设置灰色并且不可以点击
+            setButtonState();
+        }
+    }
+
+    /**
+     * 设置按钮的点击状态
+     */
+    private void setButtonState() {
+        if (mediaItems != null && mediaItems.size() > 0) {
+            if (mediaItems.size() == 1) {
+                setEnable(false);
+            }else if(mediaItems.size() == 2){
+                //虽然position在被引用的地方++了，但是这里代表的是下一个播放的页面了，所以直接从0开始考虑
+                if (position == 0) {
+                    //下一个按钮可以点击
+                    btnVideoNext.setBackgroundResource(R.drawable.btn_video_next_selector);
+                    btnVideoNext.setEnabled(true);
+
+                    //上一个按钮不可以点击
+                    btnVideoPre.setBackgroundResource(R.drawable.btn_pre_gray);
+                    btnVideoPre.setEnabled(false);
+                }else if(position== (mediaItems.size()-1)){
+                    //下一个按钮不可以点击
+                    btnVideoNext.setBackgroundResource(R.drawable.btn_next_gray);
+                    btnVideoNext.setEnabled(false);
+
+                    //上一个按钮可以点击
+                    btnVideoPre.setBackgroundResource(R.drawable.btn_video_pre_seletor);
+                    btnVideoPre.setEnabled(true);
+                }else {
+                    if (position == 0) {
+                        btnVideoPre.setBackgroundResource(R.drawable.btn_pre_gray);
+                        btnVideoPre.setEnabled(false);
+                    } else if (position == mediaItems.size() - 1) {
+                        btnVideoNext.setBackgroundResource(R.drawable.btn_next_gray);
+                        btnVideoNext.setEnabled(false);
+                    } else {
+                        setEnable(true);
+                    }
+                }
+            }
+        }else if (uri != null) {
+            //两个按钮设置灰色
+            setEnable(false);
+        }
+    }
+
+    /**
+     * 当不可以被点击的时候将突破资源显示灰色
+     */
+    private void setEnable(boolean isEnable) {
+        if (isEnable) {
+            btnVideoNext.setBackgroundResource(R.drawable.btn_video_next_selector);
+            btnVideoNext.setEnabled(true);
+            btnVideoPre.setBackgroundResource(R.drawable.btn_video_pre_seletor);
+            btnVideoPre.setEnabled(true);
+        }else {
+            //两个按钮设置灰色
+            btnVideoPre.setBackgroundResource(R.drawable.btn_pre_gray);
+            btnVideoPre.setEnabled(false);
+            btnVideoNext.setBackgroundResource(R.drawable.btn_next_gray);
+            btnVideoNext.setEnabled(false);
+        }
+    }
+
+    /**
+     * btnVideoPre,播放上一个视频按钮的方法
+     */
+    private void playPreVideo() {
+        if (mediaItems.size() > 0 && mediaItems != null) {
+            position--;
+            if (position >=0) {
+                MediaItem mediaItem = mediaItems.get(position);
+                tvName.setText(mediaItem.getName());
+                system_vedio_player.setVideoPath(mediaItem.getData());
+                //设置按钮的点击状态
+                setButtonState();
+            }
+        } else if (uri != null) {
+            //设置按钮状态-上一个和下一个按钮设置灰色并且不可以点击
+            setButtonState();
         }
     }
 
@@ -173,19 +285,39 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         //找出activity_system_video_player.xml的id
         findViews();
 
-        videoName = getIntent().getStringExtra("videoName");
-
         //设置system_vedio_player系统播放器的监听
         setListener();
-
-        //获取播放地址
-        uri = getIntent().getData();
-        if (uri != null) {
-            system_vedio_player.setVideoURI(uri);
-        }
+        //获取播放VideoPager传递过来的列表数据方法
+        getData();
+        //设置列表数据
+        setData();
         //设置控制面板
         //system_vedio_player.setMediaController(new MediaController(this));
         //自己定义一個面板
+    }
+
+    private void setData() {
+        if (mediaItems != null && mediaItems.size() > 0) {
+            MediaItem mediaItem = mediaItems.get(position);
+            tvName.setText(mediaItem.getName());
+            system_vedio_player.setVideoPath(mediaItem.getData());
+        } else if (uri != null) {
+            //如果是其他应用进来的就会传递一个uri过来，这里会获取他的路径进行播放
+            tvName.setText(uri.toString());
+            system_vedio_player.setVideoURI(uri);
+        } else {
+            Toast.makeText(SystemVideoPlayer.this, "没有找到到数据", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 获取播放VideoPager传递过来的列表数据
+     */
+    private void getData() {
+        //获取播放地址
+        uri = getIntent().getData(); ////文件夹，图片浏览器，QQ空间
+        mediaItems = (ArrayList<MediaItem>) getIntent().getSerializableExtra("videolist");
+        position = getIntent().getIntExtra("position", 0);
     }
 
     private void initData() {
@@ -320,7 +452,8 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     class MyOnCompletionListener implements MediaPlayer.OnCompletionListener {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            Toast.makeText(SystemVideoPlayer.this, videoName+"播放完成了", Toast.LENGTH_SHORT).show();
+            playNextVideo();
+            Toast.makeText(SystemVideoPlayer.this, "播放完成了", Toast.LENGTH_SHORT).show();
         }
     }
 
