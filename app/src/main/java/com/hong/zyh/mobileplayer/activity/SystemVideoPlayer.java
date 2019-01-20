@@ -308,6 +308,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         } else {
             Toast.makeText(SystemVideoPlayer.this, "没有找到到数据", Toast.LENGTH_SHORT).show();
         }
+        setButtonState();
     }
 
     /**
@@ -453,7 +454,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         @Override
         public void onCompletion(MediaPlayer mp) {
             playNextVideo();
-            Toast.makeText(SystemVideoPlayer.this, "播放完成了", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(SystemVideoPlayer.this, "播放完成了", Toast.LENGTH_SHORT).show();
         }
     }
 
