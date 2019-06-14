@@ -6,7 +6,6 @@
 /build
 /captures
 .externalNativeBuild
-/app/build.gradle
 /app/app.iml
 /MobilePlayer.iml
 /app/build
