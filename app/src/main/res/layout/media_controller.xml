@@ -45,7 +45,7 @@
         <!--音量控制seekbar-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@drawable/bg_player_top_control"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -122,7 +122,7 @@
         <!--暂停，播放，前进等控制按钮-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@drawable/bg_player_bottom_control"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -130,40 +130,40 @@
             <!--返回按钮-->
             <Button
                 android:id="@+id/bth_exit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/bth_exit_selector" />
 
             <!--上一个视频按钮-->
             <Button
                 android:id="@+id/btn_video_pre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_video_pre_seletor" />
 
             <!--播放暂停开始按钮-->
             <Button
                 android:id="@+id/btn_video_start_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_video_pause_selector" />
 
             <!--下一个视频按钮-->
             <Button
                 android:id="@+id/btn_video_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_video_next_selector" />
 
             <!--全屏按钮-->
             <Button
                 android:id="@+id/btn_video_switch_screen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_video_switch_screen_seletor" />
 

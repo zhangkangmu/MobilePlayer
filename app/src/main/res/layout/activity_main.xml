@@ -24,6 +24,7 @@
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_video_drawable_selector"
         android:text="本地视频"
+        android:button="@null"
  />
 
     <!--本地音乐按钮-->
@@ -31,19 +32,23 @@
         android:id="@+id/rb_audio"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_video_drawable_selector"
-        android:text="本地音乐" />
+        android:text="本地音乐"
+        android:button="@null"
+        />
 
     <!--网络视频按钮-->
     <RadioButton
         android:id="@+id/rb_net_video"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_audio_drawable_selector"
-        android:text="网络视频" />
+        android:text="网络视频"
+        android:button="@null"/>
     <!--网络音乐按钮-->
     <RadioButton
         android:id="@+id/rb_net_audio"
         style="@style/bottom_tag_style"
         android:drawableTop="@drawable/rb_net_music_drawable_selector"
-        android:text="网络音乐" />
+        android:text="网络音乐"
+        android:button="@null"/>
 </RadioGroup>
 </LinearLayout>

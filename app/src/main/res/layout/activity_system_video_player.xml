@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
-    <VideoView
+    <com.hong.zyh.mobileplayer.ui.MyVideoView
         android:id="@+id/system_vedio_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <include layout="@layout/media_controller"/>
+    <include
+        android:id="@+id/media_controller"
+        layout="@layout/media_controller" />
 </RelativeLayout>

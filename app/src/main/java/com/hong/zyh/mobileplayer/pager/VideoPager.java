@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -126,6 +127,7 @@ public class VideoPager extends BasePager {
                 SystemClock.sleep(500);
                 ContentResolver resolver = context.getContentResolver();
                 Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                Log.d("MediaStore",MediaStore.Video.Media.EXTERNAL_CONTENT_URI.getPath());
                 String[] objs = {
                         MediaStore.Video.Media.DISPLAY_NAME,//获取视频在sd卡中的名称
                         MediaStore.Video.Media.DURATION,//获取视频总时长
