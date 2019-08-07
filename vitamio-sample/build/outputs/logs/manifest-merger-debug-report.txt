@@ -1,0 +1,266 @@
+-- Merging decision tree log ---
+manifest
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-24:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:17:1-30:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:1-89:12
+	package
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:3:5-34
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+	android:versionName
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:5:5-32
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+	xmlns:android
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:4:5-30
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+uses-sdk
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:7:5-9:41
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:7:5-9:41
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:7:5-9:41
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:20:5-22:41
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:7:5-9:41
+INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:7:5-9:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:9:9-38
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:8:9-34
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+		INJECTED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml
+uses-permission#android.permission.WAKE_LOCK
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:11:5-68
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-68
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:11:22-65
+uses-permission#android.permission.INTERNET
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:12:5-67
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-67
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:12:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:13:5-79
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-79
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:13:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:14:5-80
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:14:22-77
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:15:5-76
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:15:22-73
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:16:5-75
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:16:22-72
+application
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:18:5-87:19
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-22:19
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-22:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:24:5-28:19
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:21:9-50
+	android:icon
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:20:9-45
+	android:allowBackup
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:19:9-36
+activity#io.vov.vitamio.activity.InitActivity
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:24:9-29:63
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:9-21:63
+MERGED from [:vitamio] G:\Code\android\MobilePlayer\vitamio\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:9-21:63
+	android:launchMode
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:27:13-43
+	android:windowSoftInputMode
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:29:13-60
+	android:configChanges
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:26:13-113
+	android:theme
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:28:13-60
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:25:13-64
+activity#io.vov.vitamio.demo.VitamioListActivity
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:30:9-37:20
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:30:19-54
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT+android.intent.category.LAUNCHER
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:31:13-36:29
+action#android.intent.action.MAIN
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:32:17-69
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:32:25-66
+category#android.intent.category.DEFAULT
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:34:17-76
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:34:27-73
+category#android.intent.category.LAUNCHER
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:35:17-77
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:35:27-74
+activity#io.vov.vitamio.demo.MediaPlayerDemo
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:38:9-41:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:40:13-46
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:39:13-44
+activity#io.vov.vitamio.demo.VideoViewDemo
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:42:9-46:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:45:13-44
+	android:configChanges
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:44:13-113
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:43:13-42
+activity#io.vov.vitamio.demo.MediaPlayerDemo_Video
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:47:9-50:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:49:13-46
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:48:13-50
+activity#io.vov.vitamio.demo.MediaPlayerDemo_setSurface
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:51:9-54:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:53:13-46
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:52:13-55
+activity#io.vov.vitamio.demo.MediaPlayerDemo_Audio
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:55:9-58:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:57:13-46
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:56:13-50
+activity#io.vov.vitamio.demo.MediaMetadataRetrieverDemo
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:59:9-62:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:61:13-48
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:60:13-55
+activity#io.vov.vitamio.demo.MediaPlayerSubtitle
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:63:9-66:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:65:13-73
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:64:13-48
+activity#io.vov.vitamio.demo.VideoViewSubtitle
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:67:9-70:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:69:13-71
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:68:13-46
+activity#io.vov.vitamio.demo.VideoSubtitleList
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:71:9-74:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:73:13-71
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:72:13-46
+activity#io.vov.vitamio.demo.VideoViewBuffer
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:75:9-78:20
+	android:label
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:77:13-64
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:76:13-44
+meta-data#UMENG_APPKEY
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:79:10-82:21
+	android:value
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:81:13-53
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:80:13-40
+meta-data#UMENG_CHANNEL
+ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:83:9-86:21
+	android:value
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:85:13-33
+	android:name
+		ADDED from G:\Code\android\MobilePlayer\vitamio-sample\AndroidManifest.xml:84:13-41
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3ba6d2f83272d2a215056bde2081c0af\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9e0b776c23a184a4f62b35351330060a\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\41fce6fa5d03c8f5f4631d0ac08653e0\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\c3ce69be34b2d5bc17db51542604f8f4\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\29ce9933c46b2077fdba26c52025ba6c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\6b2930a437b614b2a614d973c7c7ad6b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\631a5eda7eafd2e526fefd95861b3d5a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\0921394fbedc5770f0a550e54bea282d\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:appcompat-v7:26.1.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9d08fcce838bd883a0a76c29eb38fb60\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\hong\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f93e7279ea77c2b82a2637b9ab003ea\AndroidManifest.xml:26:13-58

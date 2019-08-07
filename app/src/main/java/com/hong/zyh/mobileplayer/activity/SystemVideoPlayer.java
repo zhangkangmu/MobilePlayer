@@ -8,12 +8,14 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -45,6 +47,8 @@ import java.util.Date;
 
 public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
+    //如果是true，播放系统的，false则播放自己自定义的
+    private boolean isUseSystem = true;
 
     private Uri uri;
     //videopager傳過來的數據
@@ -67,6 +71,10 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     private Button btnVideoNext;
     private Button btnVideoSwitchScreen;
     private RelativeLayout media_controller;
+    private TextView tv_buffer_netspeed;
+    private LinearLayout ll_buffer;
+    private TextView tv_laoding_netspeed;
+    private LinearLayout ll_loading;
 
     private Utils utils;
     /**
@@ -182,6 +190,11 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         btnVideoNext = (Button)findViewById( R.id.btn_video_next );
         btnVideoSwitchScreen = (Button)findViewById( R.id.btn_video_switch_screen );
         media_controller = findViewById( R.id.media_controller );
+            tv_buffer_netspeed =  findViewById(R.id.tv_buffer_netspeed);
+            ll_buffer = (LinearLayout) findViewById(R.id.ll_buffer);
+            tv_laoding_netspeed = (TextView) findViewById(R.id.tv_laoding_netspeed);
+            ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
+
 
         btVoice.setOnClickListener( this );
         bthExit.setOnClickListener( this );
@@ -194,6 +207,9 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
          seekbarVoice.setMax(maxVoice);
         //设置当前进度-当前音量
          seekbarVoice.setProgress(currentVoice);
+
+            //开始更新网络速度
+            handler.sendEmptyMessage(SHOW_SPEED);
     }
 
     @Override
@@ -225,8 +241,11 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         if (mediaItems.size() > 0 && mediaItems != null) {
             position++;
             if (position < mediaItems.size()) {
+
+                ll_loading.setVisibility(View.VISIBLE);
                 MediaItem mediaItem = mediaItems.get(position);
                 tvName.setText(mediaItem.getName());
+                isNetUri = utils.isNetUri(mediaItem.getData());
                 system_vedio_player.setVideoPath(mediaItem.getData());
                 //设置按钮的点击状态
                 setButtonState();
@@ -305,8 +324,10 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         if (mediaItems.size() > 0 && mediaItems != null) {
             position--;
             if (position >=0) {
+                ll_loading.setVisibility(View.VISIBLE);
                 MediaItem mediaItem = mediaItems.get(position);
                 tvName.setText(mediaItem.getName());
+                isNetUri = utils.isNetUri(mediaItem.getData());
                 system_vedio_player.setVideoPath(mediaItem.getData());
                 //设置按钮的点击状态
                 setButtonState();
@@ -324,6 +345,19 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
             super.handleMessage(msg);
             switch (msg.what) {
+                case SHOW_SPEED://显示网速
+                    //1.得到网络速度
+                    String netSpeed = utils.getNetSpeed(SystemVideoPlayer.this);
+
+                    //显示网络速
+                    tv_laoding_netspeed.setText("玩命加载中..."+netSpeed);
+                    tv_buffer_netspeed.setText("缓存中..."+netSpeed);
+
+                    //2.每两秒更新一次
+                    handler.removeMessages(SHOW_SPEED);
+                    handler.sendEmptyMessageDelayed(SHOW_SPEED, 2000);
+
+                    break;
                 case HIDE_MEDIACONTROLLER://隐藏控制面板
                     hideMediaController();
                     break;
@@ -337,6 +371,40 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
                     //更新时间
                     tvSystemTime.setText(getSystemTime());
+
+
+                    //缓存进度的更新
+                    if (isNetUri) {
+                        //只有网络资源才有缓存效果
+                        int buffer = system_vedio_player.getBufferPercentage();//0~100
+                        int totalBuffer = buffer * seekbarVideo.getMax();
+                        int secondaryProgress = totalBuffer / 100;
+                        seekbarVideo.setSecondaryProgress(secondaryProgress);
+                    } else {
+                        //本地视频没有缓冲效果
+                        seekbarVideo.setSecondaryProgress(0);
+                    }
+
+                    //监听卡
+                    if (!isUseSystem) {
+                         //自己设置的判断卡
+                        if(system_vedio_player.isPlaying()){
+                            int buffer = currentPosition - precurrentPosition;
+                            if (buffer < 500) {
+                                //视频卡了
+                                ll_buffer.setVisibility(View.VISIBLE);
+                            } else {
+                                //视频不卡了
+                                ll_buffer.setVisibility(View.GONE);
+                            }
+                        }else{
+                            ll_buffer.setVisibility(View.GONE);
+                        }
+
+                    }
+
+
+                    precurrentPosition = currentPosition;
 
                     //4、每秒更新一次
                     handler.removeMessages(PROGRESS);
@@ -380,10 +448,12 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         if (mediaItems != null && mediaItems.size() > 0) {
             MediaItem mediaItem = mediaItems.get(position);
             tvName.setText(mediaItem.getName());
+            isNetUri = utils.isNetUri(mediaItem.getData());
             system_vedio_player.setVideoPath(mediaItem.getData());
         } else if (uri != null) {
             //如果是其他应用进来的就会传递一个uri过来，这里会获取他的路径进行播放
             tvName.setText(uri.toString());
+            isNetUri = utils.isNetUri(uri.toString());
             system_vedio_player.setVideoURI(uri);
         } else {
             Toast.makeText(SystemVideoPlayer.this, "没有找到到数据", Toast.LENGTH_SHORT).show();
@@ -670,6 +740,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
             ivBattery.setImageResource(R.drawable.ic_battery_100);
         }
     }
+
     private void setListener() {
         //准备好了的监听
         system_vedio_player.setOnPreparedListener(new MyOnPreparedListener());
@@ -685,6 +756,33 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
         //音量的 seekbar
         seekbarVoice.setOnSeekBarChangeListener(new VoiceOnSeekBarChangeListener());
+
+        if (isUseSystem) {
+            //监听视频播放卡-系统的api
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                //监听卡
+                system_vedio_player.setOnInfoListener(new MyOnInfoListener());
+            }
+        }
+
+    }
+    class MyOnInfoListener implements MediaPlayer.OnInfoListener {
+
+        @Override
+        public boolean onInfo(MediaPlayer mp, int what, int extra) {
+            switch (what) {
+                case MediaPlayer.MEDIA_INFO_BUFFERING_START://视频卡了，拖动卡
+//                    Toast.makeText(SystemVideoPlayer.this, "卡了", Toast.LENGTH_SHORT).show();
+                    ll_buffer.setVisibility(View.VISIBLE);
+                    break;
+
+                case MediaPlayer.MEDIA_INFO_BUFFERING_END://视频卡结束了，拖动卡结束了
+//                    Toast.makeText(SystemVideoPlayer.this, "卡结束了", Toast.LENGTH_SHORT).show();
+                    ll_buffer.setVisibility(View.GONE);
+                    break;
+            }
+            return true;
+        }
     }
 
     class VoiceOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
@@ -792,6 +890,16 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
             //屏幕的默认播放
             setVideoType(DEFAULT_SCREEN);
+            //把加载页面消失掉
+            ll_loading.setVisibility(View.GONE);
+
+            //拖动完成的监听，可以用于做一些监听用户习惯，比如经常拖动什么位置
+//                mp.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+//                @Override
+//                public void onSeekComplete(MediaPlayer mp) {
+//                    Toast.makeText(SystemVideoPlayer.this, "拖动完成", Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
     }
 
@@ -803,9 +911,38 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     class MyOnErrorListener implements MediaPlayer.OnErrorListener {
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
+//            Toast.makeText(SystemVideoPlayer.this, "播放出错了", Toast.LENGTH_SHORT).show();
             Toast.makeText(SystemVideoPlayer.this, "播放出错了", Toast.LENGTH_SHORT).show();
-            return false;
+            //1.播放的视频格式不支持--跳转到万能播放器继续播放
+            startVitamioPlayer();
+//            startVitamioPlayer();
+            //2.播放网络视频的时候，网络中断---1.如果网络确实断了，可以提示用于网络断了；2.网络断断续续的，重新播放
+            //3.播放的时候本地文件中间有空白---下载做完成
+            Log.d("onError",mp.toString());
+            return true;
         }
+    }
+
+    private void startVitamioPlayer() {
+        if(system_vedio_player != null){
+            system_vedio_player.stopPlayback();
+        }
+
+
+        Intent intent = new Intent(this,VitamioSystemVideoPlayer.class);
+        if(mediaItems != null && mediaItems.size() > 0){
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("videolist", mediaItems);
+            intent.putExtras(bundle);
+            intent.putExtra("position", position);
+
+        }else if(uri != null){
+            intent.setData(uri);
+        }
+        startActivity(intent);
+
+        finish();//关闭页面
     }
 
     /**
