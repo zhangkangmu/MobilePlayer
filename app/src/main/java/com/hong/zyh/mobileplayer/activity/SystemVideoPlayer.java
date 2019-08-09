@@ -3,6 +3,7 @@ package com.hong.zyh.mobileplayer.activity;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -69,6 +71,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
     private Button btnVideoPre;
     private Button btnVideoStartPause;
     private Button btnVideoNext;
+    private Button btnSwichPlayer;
     private Button btnVideoSwitchScreen;
     private RelativeLayout media_controller;
     private TextView tv_buffer_netspeed;
@@ -190,6 +193,8 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         btnVideoNext = (Button)findViewById( R.id.btn_video_next );
         btnVideoSwitchScreen = (Button)findViewById( R.id.btn_video_switch_screen );
         media_controller = findViewById( R.id.media_controller );
+        btnSwichPlayer = findViewById( R.id.btn_swich_player );
+
             tv_buffer_netspeed =  findViewById(R.id.tv_buffer_netspeed);
             ll_buffer = (LinearLayout) findViewById(R.id.ll_buffer);
             tv_laoding_netspeed = (TextView) findViewById(R.id.tv_laoding_netspeed);
@@ -202,6 +207,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         btnVideoStartPause.setOnClickListener( this );
         btnVideoNext.setOnClickListener( this );
         btnVideoSwitchScreen.setOnClickListener( this );
+        btnSwichPlayer.setOnClickListener( this );
 
         //最大音量和SeekBar关联
          seekbarVoice.setMax(maxVoice);
@@ -217,7 +223,10 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
         if (v == btVoice) {
             isMute = !isMute;
             updataVoice(currentVoice, isMute);
-        } else if (v == bthExit) {
+        }else if (v== btnSwichPlayer){
+            Toast.makeText(SystemVideoPlayer.this,"已切换到万能播放器",Toast.LENGTH_SHORT).show();
+            startVitamioPlayer();
+        }else if (v == bthExit) {
             finish();
             //播放上一个的id
         } else if (v == btnVideoPre) {
@@ -233,6 +242,20 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
             setFullScreenAndDefault();
         }
     }
+
+//    private void showSwichPlayerDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(SystemVideoPlayer.this);
+//        builder.setTitle("系统播放器提醒您");
+//        builder.setMessage("当您播放视频，有声音没有画面的时候，请切换万能播放器播放");
+//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                startVitamioPlayer();
+//            }
+//        });
+//        builder.setNegativeButton("取消",null);
+//        builder.show();
+//    }
 
     /**
      * btnVideoNext,播放下一个视频按钮的方法
@@ -958,6 +981,7 @@ public class SystemVideoPlayer extends Activity implements View.OnClickListener{
 
     @Override
     protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
         //释放资源的时候要先释放子类的再释放父类的
         if(myBroadcastReceiver !=null){
             unregisterReceiver(myBroadcastReceiver);

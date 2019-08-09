@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.hong.zyh.mobileplayer.ui.VitamioVideoView
+        android:id="@+id/system_vedio_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/media_controller"
+        layout="@layout/media_controller" />
+
+
+    <include layout="@layout/ll_buffer" android:id="@+id/ll_buffer"/>
+
+    <include layout="@layout/ll_loading" android:id="@+id/ll_loading"/>
+</RelativeLayout>

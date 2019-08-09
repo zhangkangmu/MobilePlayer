@@ -64,11 +64,11 @@
                 android:layout_weight="1"
                 android:maxHeight="6dp"
                 android:minHeight="6dp"
-                android:progress="20"
                 android:progressDrawable="@drawable/progress_horizontal"
                 android:thumb="@drawable/progress_thumb" />
 
             <Button
+                android:id="@+id/btn_swich_player"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_swich_player_selector" />
@@ -106,7 +106,6 @@
                 android:layout_weight="1"
                 android:maxHeight="6dp"
                 android:minHeight="6dp"
-                android:progress="20"
                 android:progressDrawable="@drawable/progress_horizontal"
                 android:thumb="@drawable/progress_thumb" />
 

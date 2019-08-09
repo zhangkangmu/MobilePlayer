@@ -1,8 +1,10 @@
 package com.hong.zyh.mobileplayer.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -71,6 +73,7 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
     private Button btnVideoStartPause;
     private Button btnVideoNext;
     private Button btnVideoSwitchScreen;
+    private Button btnSwichPlayer;
     private RelativeLayout media_controller;
     private TextView tv_buffer_netspeed;
     private LinearLayout ll_buffer;
@@ -193,6 +196,7 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
         btnVideoNext = (Button)findViewById( R.id.btn_video_next );
         btnVideoSwitchScreen = (Button)findViewById( R.id.btn_video_switch_screen );
         media_controller = findViewById( R.id.media_controller );
+            btnSwichPlayer = findViewById( R.id.btn_swich_player );
             tv_buffer_netspeed =  findViewById(R.id.tv_buffer_netspeed);
             ll_buffer = (LinearLayout) findViewById(R.id.ll_buffer);
             tv_laoding_netspeed = (TextView) findViewById(R.id.tv_laoding_netspeed);
@@ -205,6 +209,7 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
         btnVideoStartPause.setOnClickListener( this );
         btnVideoNext.setOnClickListener( this );
         btnVideoSwitchScreen.setOnClickListener( this );
+            btnSwichPlayer.setOnClickListener( this );
 
         //最大音量和SeekBar关联
          seekbarVoice.setMax(maxVoice);
@@ -220,7 +225,10 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
         if (v == btVoice) {
             isMute = !isMute;
             updataVoice(currentVoice, isMute);
-        } else if (v == bthExit) {
+        } else if (v== btnSwichPlayer){
+//            showSwichPlayerDialog();
+            Toast.makeText(VitamioSystemVideoPlayer.this, "切换系统播放器", Toast.LENGTH_SHORT).show();
+        }else if (v == bthExit) {
             finish();
             //播放上一个的id
         } else if (v == btnVideoPre) {
@@ -235,6 +243,42 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
             // Handle clicks for btnVideoSwitchScreen
             setFullScreenAndDefault();
         }
+    }
+
+//    private void showSwichPlayerDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("万能播放器提醒您");
+//        builder.setMessage("当您播放一个视频，有花屏的是，可以尝试使用系统播放器播放");
+//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                startSystemPlayer();
+//            }
+//        });
+//        builder.setNegativeButton("取消", null);
+//        builder.show();
+//    }
+
+    private void startSystemPlayer() {
+        if(system_vedio_player != null){
+            system_vedio_player.stopPlayback();
+        }
+
+
+        Intent intent = new Intent(this,SystemVideoPlayer.class);
+        if(mediaItems != null && mediaItems.size() > 0){
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("videolist", mediaItems);
+            intent.putExtras(bundle);
+            intent.putExtra("position", position);
+
+        }else if(uri != null){
+            intent.setData(uri);
+        }
+        startActivity(intent);
+
+        finish();//关闭页面
     }
 
     /**
@@ -913,8 +957,8 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
     class MyOnErrorListener implements MediaPlayer.OnErrorListener {
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
-//            Toast.makeText(SystemVideoPlayer.this, "播放出错了", Toast.LENGTH_SHORT).show();
-            Toast.makeText(VitamioSystemVideoPlayer.this, "播放出错了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(VitamioSystemVideoPlayer.this, "视频文件错误！", Toast.LENGTH_SHORT).show();
+//            showErrorDialog();
             //1.播放的视频格式不支持--跳转到万能播放器继续播放
 //            startVitamioPlayer();
             //2.播放网络视频的时候，网络中断---1.如果网络确实断了，可以提示用于网络断了；2.网络断断续续的，重新播放
@@ -923,6 +967,19 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
             return true;
         }
     }
+
+//    private void showErrorDialog() {
+//        AlertDialog.Builder builder=new AlertDialog.Builder(VitamioSystemVideoPlayer.this);
+//        builder.setTitle("播放出错了");
+//        builder.setMessage("抱歉，无法播放该视频！！");
+//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//        builder.show();
+//    }
 
     /**
      * 播放完成的監聽，播放完後顯示name播放完成
@@ -937,6 +994,7 @@ public class VitamioSystemVideoPlayer extends Activity implements View.OnClickLi
 
     @Override
     protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
         //释放资源的时候要先释放子类的再释放父类的
         if(myBroadcastReceiver !=null){
             unregisterReceiver(myBroadcastReceiver);
