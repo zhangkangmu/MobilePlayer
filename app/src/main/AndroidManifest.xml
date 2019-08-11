@@ -260,6 +260,12 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" ></activity>
+        <activity android:name=".activity.AudioPlayerActivity"/>
+        <service android:name=".service.MusicPlayerService">
+            <intent-filter>
+                <action android:name="com.hong.zyh.mobileplayer_OPENAUDIO"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

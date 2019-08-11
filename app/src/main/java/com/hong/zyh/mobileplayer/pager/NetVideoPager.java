@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import com.hong.zyh.mobileplayer.activity.SystemVideoPlayer;
 import com.hong.zyh.mobileplayer.adapter.NetVideoPagerAdapter;
 import com.hong.zyh.mobileplayer.base.BasePager;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
+import com.hong.zyh.mobileplayer.utils.CacheUtils;
 import com.hong.zyh.mobileplayer.utils.Constants;
 import com.hong.zyh.mobileplayer.utils.LogUtil;
 import com.hong.zyh.mobileplayer.view.XListView;
@@ -138,6 +140,10 @@ public class NetVideoPager extends BasePager {
     public void initData() {
         super.initData();
         LogUtil.e("网络视频页面initData");
+        String saveJson = CacheUtils.getString(context, Constants.NET_URL);
+        if (!TextUtils.isEmpty(saveJson)){
+            processData(saveJson);
+        }
         getDataFromNet();
     }
 
@@ -148,7 +154,8 @@ public class NetVideoPager extends BasePager {
             @Override
             public void onSuccess(String result) {
                 LogUtil.e("联网成功==" + result);
-
+                //缓存数据
+                CacheUtils.putString(context,Constants.NET_URL,result);
                 //主线程，解析数据
                 processData(result);
                 isLoadMore = true;
@@ -158,6 +165,8 @@ public class NetVideoPager extends BasePager {
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e("getDataFromNet联网失败==" + ex.getMessage());
                 isLoadMore = false;
+                mTv_nonet.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             }
 
             @Override

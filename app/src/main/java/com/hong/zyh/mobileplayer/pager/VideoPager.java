@@ -48,7 +48,7 @@ public class VideoPager extends BasePager {
             super.handleMessage(msg);
             if (mediaItems != null && mediaItems.size() > 0) {
                 //有数据就设置适配器
-                videoPagerAdapter= new VideoPagerAdapter(context,mediaItems);
+                videoPagerAdapter= new VideoPagerAdapter(context,mediaItems,true);
                 listview_video.setAdapter(videoPagerAdapter);
                 listview_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

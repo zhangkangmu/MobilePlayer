@@ -21,13 +21,15 @@ import java.util.ArrayList;
 
 public class VideoPagerAdapter extends BaseAdapter {
 
+    private final boolean isVideo;
     private Context context;
     private ArrayList<MediaItem> mediaItems;
     private Utils utils;
 
-    public VideoPagerAdapter(Context context, ArrayList<MediaItem> mediaItems) {
+    public VideoPagerAdapter(Context context, ArrayList<MediaItem> mediaItems,boolean isVideo) {
         this.context = context;
         this.mediaItems = mediaItems;
+        this.isVideo=isVideo;
         utils=new Utils();
     }
 
@@ -64,6 +66,12 @@ public class VideoPagerAdapter extends BaseAdapter {
         viewHoder.tv_video_name.setText(mediaItem.getName());
         viewHoder.tv_video_time.setText(utils.stringForTime((int) (mediaItem.getDuration())));
         viewHoder.tv_video_size.setText(Formatter.formatFileSize(context, mediaItem.getDuration()));
+
+        if (!isVideo){
+            //不是视频
+            viewHoder.iv_item_video.setImageResource(R.drawable.music_default_bg);
+
+        }
         return convertView;
     }
 

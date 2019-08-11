@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hong.zyh.mobileplayer.R;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
 import com.hong.zyh.mobileplayer.utils.Utils;
@@ -65,6 +67,12 @@ public class NetVideoPagerAdapter extends BaseAdapter {
         viewHoder.tv_desc.setText(mediaItem.getDesc());
 //        1.使用xUtils3请求图片
         x.image().bind(viewHoder.iv_icon,mediaItem.getImageUrl());
+//        2.使用glide加载图片
+        Glide.with(context).load(mediaItem.getImageUrl()).
+                diskCacheStrategy(DiskCacheStrategy.ALL)   //可换成不同尺寸的图片，可以比如说第一个也页面是200*200，第二个是100*100，那就不用加载两次了
+                .placeholder(R.mipmap.ic_launcher)    //默认加载
+                .error(R.mipmap.ic_launcher)          //失败加载的图片
+                .into(viewHoder.iv_icon);
         return convertView;
     }
 
