@@ -20,6 +20,7 @@ import com.example.hong.demo.IMusicPlayerService;
 import com.hong.zyh.mobileplayer.R;
 import com.hong.zyh.mobileplayer.activity.AudioPlayerActivity;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
+import com.hong.zyh.mobileplayer.utils.CacheUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -163,6 +164,7 @@ public class MusicPlayerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        playmode= CacheUtils.getPlaymode(this,"playmode");
         //加载音乐列表
         getDataFromLocal();
     }
@@ -355,7 +357,8 @@ public class MusicPlayerService extends Service {
      * @param playmode
      */
     private void setPlayMode(int playmode) {
-
+        this.playmode = playmode;
+        CacheUtils.putPlaymode(this,"playmode",playmode);
     }
 
     /**
@@ -364,7 +367,7 @@ public class MusicPlayerService extends Service {
      * @return
      */
     private int getPlayMode() {
-        return 0;
+        return playmode;
     }
 
 

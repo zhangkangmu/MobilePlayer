@@ -20,11 +20,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hong.demo.IMusicPlayerService;
 import com.hong.zyh.mobileplayer.R;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
 import com.hong.zyh.mobileplayer.service.MusicPlayerService;
+import com.hong.zyh.mobileplayer.utils.CacheUtils;
 import com.hong.zyh.mobileplayer.utils.LogUtil;
 import com.hong.zyh.mobileplayer.utils.Utils;
 
@@ -157,6 +159,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         @Override
         public void onReceive(Context context, Intent intent) {
             showViewData();
+            checkPlaymode();
         }
     }
 
@@ -165,6 +168,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             tvArtist.setText(service.getArtist());
             tvName.setText(service.getName());
             seekbarAudio.setMax(service.getDuration());
+            checkPlaymode();
             handler.sendEmptyMessage(PROGRESS);
 
         } catch (RemoteException e) {
@@ -238,7 +242,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     public void onClick(View v) {
         //切换播放模式
         if (v == btnAudioPlaymode) {
-//            setPlaymode();
+            setPlaymode();
             //上一首
         } else if (v == btnAudioPre) {
             if (service != null) {
@@ -281,6 +285,75 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         }
     }
 
+    private void setPlaymode() {
+        try {
+            int playmode = service.getPlayMode();
+            if(playmode==MusicPlayerService.REPEAT_NORMAL){
+                playmode = MusicPlayerService.REPEAT_SINGLE;
+            }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+                playmode = MusicPlayerService.REPEAT_ALL;
+            }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+                playmode = MusicPlayerService.REPEAT_NORMAL;
+            }else{
+                playmode = MusicPlayerService.REPEAT_NORMAL;
+            }
+//            让服务保持这种模式
+            service.setPlayMode(playmode);
+            //设置图片
+            showPlaymode();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPlaymode() {
+        try {
+            int playmode = service.getPlayMode();
+
+            if(playmode==MusicPlayerService.REPEAT_NORMAL){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+                Toast.makeText(AudioPlayerActivity.this, "顺序播放", Toast.LENGTH_SHORT).show();
+            }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_single_selector);
+                Toast.makeText(AudioPlayerActivity.this, "单曲循环", Toast.LENGTH_SHORT).show();
+            }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_all_selector);
+                Toast.makeText(AudioPlayerActivity.this, "全部循环", Toast.LENGTH_SHORT).show();
+            }else{
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+                Toast.makeText(AudioPlayerActivity.this, "顺序播放", Toast.LENGTH_SHORT).show();
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 校验状态
+     */
+    private void checkPlaymode() {
+        try {
+            int playmode = service.getPlayMode();
+            if(playmode==MusicPlayerService.REPEAT_NORMAL){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+            }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_single_selector);
+            }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_all_selector);
+            }else{
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+            }
+
+
+            //校验播放和暂停的按钮
+            if(service.isPlaying()){
+                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_start_selector);
+            }else{
+                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_pause_selector);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);

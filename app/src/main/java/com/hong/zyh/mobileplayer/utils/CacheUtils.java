@@ -3,6 +3,8 @@ package com.hong.zyh.mobileplayer.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.hong.zyh.mobileplayer.service.MusicPlayerService;
+
 /**
  * Created by hong on 2019/8/10.
  * 缓存工具类
@@ -30,6 +32,25 @@ public class CacheUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences("XXZCache",Context.MODE_PRIVATE);
         return  sharedPreferences.getString(key,"");
     }
-
+    /**
+     * 设置播放模式
+     * @param context
+     * @param key
+     * @return
+             */
+    public static void putPlaymode(Context context, String key, int values) {
+        SharedPreferences preferences = context.getSharedPreferences("XXZCache", Context.MODE_PRIVATE);
+        preferences.edit().putInt(key,values).commit();
+    }
+    /**
+     * 获取播放模式
+     * @param context
+     * @param key
+     * @return
+     */
+    public static int getPlaymode(Context context,String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("XXZCache",Context.MODE_PRIVATE);
+        return  sharedPreferences.getInt(key, MusicPlayerService.REPEAT_NORMAL);
+    }
 }
 
