@@ -1,6 +1,9 @@
 package com.hong.zyh.mobileplayer.service;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -14,6 +17,8 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.example.hong.demo.IMusicPlayerService;
+import com.hong.zyh.mobileplayer.R;
+import com.hong.zyh.mobileplayer.activity.AudioPlayerActivity;
 import com.hong.zyh.mobileplayer.bean.MediaItem;
 
 import java.io.IOException;
@@ -232,11 +237,24 @@ public class MusicPlayerService extends Service {
         sendBroadcast(intent);
     }
 
+
+    NotificationManager manager;
     /**
      * 开始
      */
     private void start() {
         mediaPlayer.start();
+        Intent intent = new Intent(this, AudioPlayerActivity.class);
+        intent.putExtra("notification",true);//标识来自状态拦
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.notification_music_playing)
+                .setContentText(getName())
+                .setContentTitle("小象子影音")
+                .setContentIntent(pendingIntent)
+                .build();
+        manager.notify(1,notification);  //参数1：通知的id  参数2：通知
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.hong.zyh.mobileplayer.activity;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -70,7 +71,12 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             service = IMusicPlayerService.Stub.asInterface(binder);
             if (service != null) {
                 try {
-                    service.openAudio(position);
+//                    不是从状态栏中点击的时候
+                    if (!notification){
+                        service.openAudio(position);
+                    }else {
+                        showViewData();
+                    }
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +101,11 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     };
     private MyReceiver myReceiver;
     private Utils utils;
+    /**
+     * true:从状态栏进入的，不需要重新播放
+     * false:从播放列表进入的
+     */
+    private boolean notification;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -217,7 +228,10 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         }
     }
     public void getData() {
+        notification = getIntent().getBooleanExtra("notification",false);
+        if (notification){
         position = getIntent().getIntExtra("position", 0);
+        }
     }
 
     @Override
