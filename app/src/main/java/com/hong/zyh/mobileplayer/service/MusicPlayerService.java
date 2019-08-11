@@ -253,8 +253,8 @@ public class MusicPlayerService extends Service {
         Notification notification = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.notification_music_playing)
                 .setContentText(getName())
-                .setContentTitle("小象子影音")
                 .setContentIntent(pendingIntent)
+                .setOngoing(true)   //无法清除通知栏，表示正在进行中
                 .build();
         manager.notify(1,notification);  //参数1：通知的id  参数2：通知
     }
