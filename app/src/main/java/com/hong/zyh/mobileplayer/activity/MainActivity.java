@@ -3,16 +3,19 @@ package com.hong.zyh.mobileplayer.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.hong.zyh.mobileplayer.R;
 import com.hong.zyh.mobileplayer.base.BasePager;
@@ -148,5 +151,30 @@ public class MainActivity extends FragmentActivity {
             basePager.isInitData =true;
         }
         return basePager;
+    }
+
+    /**
+     * 是否已经退出
+     */
+    private boolean isExit = false;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode ==KeyEvent.KEYCODE_BACK){
+            if(position != 0){//不是第一页面
+                position = 0;
+                rg_bottom_tag.check(R.id.rb_video);//首页
+                return true;
+            }else if(!isExit){
+                isExit = true; Toast.makeText(MainActivity.this,"再按一次推出",Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isExit  = false;
+                    }
+                },2000);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
