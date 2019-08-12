@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.hong.demo.IMusicPlayerService;
@@ -167,6 +168,7 @@ public class MusicPlayerService extends Service {
         playmode= CacheUtils.getPlaymode(this,"playmode");
         //加载音乐列表
         getDataFromLocal();
+
     }
 
     @Nullable
@@ -182,6 +184,7 @@ public class MusicPlayerService extends Service {
      */
     private void openAudio(int position) {
         this.position=position;
+        Log.e("zyh","openAudio位置："+position);
         if (mediaItems != null && mediaItems.size() > 0) {
 
             mediaItem = mediaItems.get(position);
@@ -199,6 +202,13 @@ public class MusicPlayerService extends Service {
                 mediaPlayer.setDataSource(mediaItem.getData());
                 //这个不要忘了,异步装载
                 mediaPlayer.prepareAsync();
+                 if (playmode==MusicPlayerService.REPEAT_SINGLE){
+                     //单曲循环播放-不会触发播放完成的回调
+                     mediaPlayer.setLooping(true);
+                 }else{
+                     //不循环播放
+                     mediaPlayer.setLooping(false);
+                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -326,29 +336,108 @@ public class MusicPlayerService extends Service {
      */
     private void next() {
 
+        //1.根据当前的播放模式，设置下一个的位置
+        setNextPosition();
+        //2.根据当前的播放模式和下标位置去播放音频
+        openNextAudio();
+
     }
 
     private void openNextAudio() {
-
+        int playmode = getPlayMode();
+        if(playmode==MusicPlayerService.REPEAT_NORMAL){
+            if(position < mediaItems.size()){
+                //正常范围
+                openAudio(position);
+            }else{
+                position = mediaItems.size()-1;
+            }
+        }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+            openAudio(position);
+        }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+            openAudio(position);
+        }else{
+            if(position < mediaItems.size()){
+                //正常范围
+                openAudio(position);
+            }else{
+                position = mediaItems.size()-1;
+            }
+        }
     }
 
     private void setNextPosition() {
-
+        Log.e("zyh","当前位置："+position);
+        int playmode = getPlayMode();
+//        顺序循环
+        if(playmode==MusicPlayerService.REPEAT_NORMAL){
+            position++;
+        }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+            position++;
+            if(position >=mediaItems.size()){
+                position = 0;
+            }
+        }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+            position++;
+            if(position >=mediaItems.size()){
+                position = 0;
+            }
+        }else{
+            position++;
+        }
+        Log.e("zyh","点击下一首的位置："+position);
     }
 
     /**
      * 播放上一个音频
      */
     private void pre() {
-
+        //1.根据当前的播放模式，设置上一个的位置
+        setPrePosition();
+        //2.根据当前的播放模式和下标位置去播放音频
+        openPreAudio();
     }
 
     private void openPreAudio() {
-
+        int playmode = getPlayMode();
+        if(playmode==MusicPlayerService.REPEAT_NORMAL){
+            if(position >= 0){
+                //正常范围
+                openAudio(position);
+            }else{
+                position = 0;
+            }
+        }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+            openAudio(position);
+        }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+            openAudio(position);
+        }else{
+            if(position >= 0){
+                //正常范围
+                openAudio(position);
+            }else{
+                position = 0;
+            }
+        }
     }
 
     private void setPrePosition() {
-
+        int playmode = getPlayMode();
+        if(playmode==MusicPlayerService.REPEAT_NORMAL){
+            position--;
+        }else if(playmode == MusicPlayerService.REPEAT_SINGLE){
+            position--;
+            if(position < 0){
+                position = mediaItems.size()-1;
+            }
+        }else if(playmode ==MusicPlayerService.REPEAT_ALL){
+            position--;
+            if(position < 0){
+                position = mediaItems.size()-1;
+            }
+        }else{
+            position--;
+        }
     }
 
     /**
@@ -359,6 +448,13 @@ public class MusicPlayerService extends Service {
     private void setPlayMode(int playmode) {
         this.playmode = playmode;
         CacheUtils.putPlaymode(this,"playmode",playmode);
+        if(playmode==MusicPlayerService.REPEAT_SINGLE){
+            //单曲循环播放-不会触发播放完成的回调
+            mediaPlayer.setLooping(true);
+        }else{
+            //不循环播放
+            mediaPlayer.setLooping(false);
+        }
     }
 
     /**

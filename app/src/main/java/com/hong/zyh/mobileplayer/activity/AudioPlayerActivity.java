@@ -346,9 +346,9 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
             //校验播放和暂停的按钮
             if(service.isPlaying()){
-                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_start_selector);
-            }else{
                 btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_pause_selector);
+            }else{
+                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_start_selector);
             }
         } catch (RemoteException e) {
             e.printStackTrace();
