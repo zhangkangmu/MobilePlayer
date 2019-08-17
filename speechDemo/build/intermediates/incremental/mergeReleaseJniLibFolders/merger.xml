@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="G:\Code\android\MobilePlayer\speechDemo\libs"><file name="armeabi-v7a/libmsc.so" path="G:\Code\android\MobilePlayer\speechDemo\libs\armeabi-v7a\libmsc.so"/><file name="Msc.jar" path="G:\Code\android\MobilePlayer\speechDemo\libs\Msc.jar"/></source></dataSet><dataSet config="release"><source path="G:\Code\android\MobilePlayer\speechDemo\src\release\jniLibs"/></dataSet></merger>
